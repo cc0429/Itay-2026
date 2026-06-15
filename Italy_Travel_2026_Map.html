@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🇮🇹 意大利旅行 2026 | 7月3–15日</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;height:100vh;display:flex;flex-direction:column;background:#f5f5f5;overflow:hidden;}
+
+/* HEADER */
+#hdr{background:#fff;padding:10px 14px 0;box-shadow:0 1px 4px rgba(0,0,0,.12);z-index:1000;flex-shrink:0;}
+.htop{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.htop .flag{font-size:20px;}
+.htitle{font-size:15px;font-weight:700;color:#1a1a1a;}
+.hsub{font-size:11px;color:#888;margin-top:1px;}
+#tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;scrollbar-width:none;}
+#tabs::-webkit-scrollbar{display:none;}
+.tab{padding:5px 13px;border-radius:20px;border:1.5px solid #ddd;cursor:pointer;
+  font-size:12px;font-weight:600;white-space:nowrap;color:#555;background:#fff;
+  transition:all .15s;flex-shrink:0;}
+.tab:hover:not(.active){background:#f0f0f0;}
+
+/* MAIN */
+#main{display:flex;flex:1;overflow:hidden;}
+#map{flex:1;z-index:1;}
+
+/* SIDEBAR */
+#sb{width:320px;background:#fff;box-shadow:-2px 0 8px rgba(0,0,0,.08);overflow-y:auto;flex-shrink:0;}
+#sb::-webkit-scrollbar{width:3px;}
+#sb::-webkit-scrollbar-thumb{background:#ddd;border-radius:2px;}
+
+.dh{padding:16px 14px 12px;}
+.dlabel{font-size:10px;color:#888;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:3px;}
+.dtitle{font-size:18px;font-weight:800;color:#1a1a1a;margin-bottom:5px;line-height:1.25;}
+.ddesc{font-size:12px;color:#666;line-height:1.5;margin-bottom:11px;}
+.rbtn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;
+  padding:9px;background:#202124;color:#fff;border:none;border-radius:6px;
+  cursor:pointer;font-size:13px;font-weight:600;text-decoration:none;
+  transition:background .15s;}
+.rbtn:hover{background:#444;}
+
+.slabel{font-size:10px;font-weight:700;color:#999;letter-spacing:.8px;
+  padding:10px 14px 4px;border-top:1px solid #f2f2f2;text-transform:uppercase;}
+
+.sc{display:flex;gap:10px;padding:9px 14px;cursor:pointer;
+  transition:background .12s;border-left:3px solid transparent;}
+.sc:hover{background:#f5f8ff;}
+.sc.hl{background:#e8f0fe;border-left-color:#1a73e8;}
+
+.sthumb{width:52px;height:52px;border-radius:6px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;font-weight:800;color:#fff;}
+.sright{flex:1;min-width:0;}
+.stime{font-size:11px;color:#888;margin-bottom:1px;}
+.sname{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:2px;
+  line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.smeta{font-size:11px;color:#666;margin-bottom:2px;}
+.sstar{color:#f4a300;}
+.sdesc{font-size:11px;color:#666;line-height:1.4;}
+.snext{display:flex;align-items:center;gap:4px;font-size:11px;color:#1a73e8;
+  margin-top:5px;padding-top:5px;border-top:1px dashed #e8e8e8;}
+
+/* popup */
+.leaflet-popup-content-wrapper{border-radius:8px;box-shadow:0 3px 14px rgba(0,0,0,.15);}
+.leaflet-popup-content{margin:8px 12px;}
+.pt{font-size:11px;color:#888;}
+.pn{font-size:14px;font-weight:700;color:#1a1a1a;margin:2px 0;}
+.pd{font-size:12px;color:#555;}
+
+@media(max-width:680px){
+  #main{flex-direction:column;}
+  #map{flex:none;height:52vh;}
+  #sb{width:100%;flex:1;}
+}
+</style>
+</head>
+<body>
+
+<div id="hdr">
+  <div class="htop">
+    <span class="flag">🇮🇹</span>
+    <div>
+      <div class="htitle">意大利旅行 2026 · 互动行程地图</div>
+      <div class="hsub">7月3日–7月15日 &nbsp;·&nbsp; 米兰 · 佛罗伦萨 · 威尼斯 · 罗马 · 梵蒂冈</div>
+    </div>
+  </div>
+  <div id="tabs"></div>
+</div>
+
+<div id="main">
+  <div id="map"></div>
+  <div id="sb"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+const DAYS = [{"date": "7/3", "dow": "周五", "emoji": "✈️", "color": "#3B4BDB", "title": "抵达米兰", "desc": "深圳→北京→米兰 | 恢复日 | 早休息准备旅程", "center": [45.55, 9.05], "zoom": 9, "stops": [{"n": "Milan Malpensa Airport T1", "t": "18:00", "lat": 45.6306, "lon": 8.7231, "cat": "机场", "rating": 4.5, "reviews": "12,483", "desc": "抵达，办理入境取行李 (预留60-90分钟)", "sec": "Evening", "next": "Malpensa Express → 51分钟"}, {"n": "Milano Centrale 米兰中央站", "t": "20:30", "lat": 45.4862, "lon": 9.2045, "cat": "火车站", "rating": 4.3, "reviews": "38,291", "desc": "抵达市区，步行至酒店", "sec": "Evening", "next": "步行 → 5分钟"}, {"n": "43 Station Hotel", "t": "21:00", "lat": 45.4865, "lon": 9.2043, "cat": "酒店 | 7/3–7/4住宿", "rating": 4.1, "reviews": "2,184", "desc": "入住，附近简单晚餐，早休息", "sec": "Evening", "next": ""}]}, {"date": "7/4", "dow": "周六", "emoji": "🎨", "color": "#22AA44", "title": "米兰 → 佛罗伦萨", "desc": "高铁约2小时 | 下午文艺复兴老城步行 | 18:00米开朗基罗广场日落", "center": [43.773, 11.256], "zoom": 14, "stops": [{"n": "Milano Centrale 出发", "t": "09:00", "lat": 45.4862, "lon": 9.2045, "cat": "火车站", "rating": 4.3, "reviews": "38,291", "desc": "乘Frecciarossa高铁出发", "sec": "Morning", "next": "Frecciarossa高铁 → 约2小时"}, {"n": "Firenze SMN 火车站", "t": "11:00", "lat": 43.7763, "lon": 11.2484, "cat": "火车站", "rating": 4.2, "reviews": "19,847", "desc": "抵达佛罗伦萨，步行至酒店", "sec": "Morning", "next": "步行 → 8分钟"}, {"n": "Mercato Centrale 中央市场", "t": "12:00", "lat": 43.7759, "lon": 11.2527, "cat": "市场 / 餐厅", "rating": 4.4, "reviews": "31,022", "desc": "午餐 (靠近车站和酒店)", "sec": "Afternoon", "next": "步行 → 12分钟"}, {"n": "Santa Maria del Fiore 圣母百花大教堂", "t": "14:15", "lat": 43.773, "lon": 11.2561, "cat": "大教堂", "rating": 4.8, "reviews": "112,431", "desc": "预约14:15–15:00 | 广场外观 + Giotto钟楼 + 洗礼堂", "sec": "Afternoon", "next": "步行 → 8分钟"}, {"n": "Piazza della Signoria 领主广场", "t": "15:30", "lat": 43.7696, "lon": 11.2559, "cat": "广场", "rating": 4.7, "reviews": "63,844", "desc": "领主广场→旧宫外观→乌菲兹外观", "sec": "Afternoon", "next": "步行 → 8分钟"}, {"n": "Ponte Vecchio 老桥", "t": "16:15", "lat": 43.768, "lon": 11.2533, "cat": "历史景点", "rating": 4.7, "reviews": "87,211", "desc": "阿诺河上的中世纪石桥，金匠与珠宝商云集", "sec": "Afternoon", "next": "打车 → 约10分钟"}, {"n": "Piazzale Michelangelo 米开朗基罗广场", "t": "18:00", "lat": 43.763, "lon": 11.2651, "cat": "观景台", "rating": 4.7, "reviews": "58,923", "desc": "日落观景 | 俯瞰佛罗伦萨全城最佳视角", "sec": "Evening", "next": ""}]}, {"date": "7/5", "dow": "周日", "emoji": "🖼️", "color": "#22AA44", "title": "佛罗伦萨核心日", "desc": "每月第一周日免费！Uffizi + Accademia + 美第奇礼拜堂", "center": [43.772, 11.256], "zoom": 15, "stops": [{"n": "Uffizi Gallery 乌菲兹美术馆", "t": "08:15", "lat": 43.7686, "lon": 11.2556, "cat": "美术馆", "rating": 4.7, "reviews": "53,821", "desc": "免费日！波提切利《春》《维纳斯的诞生》| 约3小时 | 07:30前到场", "sec": "Morning", "next": "步行 → 13分钟"}, {"n": "Accademia Gallery 学院美术馆", "t": "13:30", "lat": 43.7763, "lon": 11.2576, "cat": "美术馆", "rating": 4.7, "reviews": "31,094", "desc": "免费日！米开朗基罗《大卫》| 未完成奴隶像 | 约2小时", "sec": "Afternoon", "next": "步行 → 5分钟"}, {"n": "Medici Chapels 美第奇礼拜堂", "t": "16:00", "lat": 43.7751, "lon": 11.2527, "cat": "历史建筑", "rating": 4.6, "reviews": "18,372", "desc": "免费日！米开朗基罗晚期雕塑 | 美第奇家族艺术赞助 | 约2小时", "sec": "Afternoon", "next": ""}]}, {"date": "7/6", "dow": "周一", "emoji": "🎓", "color": "#3B4BDB", "title": "佛罗伦萨→米兰 会议注册", "desc": "09:00高铁返回米兰 | 下午Politecnico di Milano Bovisa Campus会议注册", "center": [45.5, 9.19], "zoom": 12, "stops": [{"n": "Firenze SMN 出发", "t": "09:00", "lat": 43.7763, "lon": 11.2484, "cat": "火车站", "rating": 4.2, "reviews": "19,847", "desc": "高铁返回米兰", "sec": "Morning", "next": "Frecciarossa → 约2小时"}, {"n": "Milano Centrale 抵达", "t": "11:00", "lat": 45.4862, "lon": 9.2045, "cat": "火车站", "rating": 4.3, "reviews": "38,291", "desc": "抵达米兰，前往Starhotels Tourist", "sec": "Morning", "next": "地铁M5 → 约30分钟"}, {"n": "Starhotels Tourist", "t": "12:00", "lat": 45.524, "lon": 9.218, "cat": "酒店 | 7/6–7/11住宿", "rating": 4.1, "reviews": "3,847", "desc": "靠近Bignami地铁站(M5线)，会议期间住所", "sec": "Afternoon", "next": "地铁 → 约25分钟"}, {"n": "Politecnico Bovisa Campus 会议注册", "t": "17:00", "lat": 45.5128, "lon": 9.1736, "cat": "大学 / 会议地点", "rating": 4.5, "reviews": "1,203", "desc": "17:00前完成注册，熟悉会场和汇报路线", "sec": "Afternoon", "next": ""}]}, {"date": "7/7", "dow": "周二", "emoji": "🎤", "color": "#3B4BDB", "title": "会议汇报日", "desc": "全天参会 | 汇报17:15–18:15 | 晚上轻量夜游大教堂", "center": [45.487, 9.188], "zoom": 13, "stops": [{"n": "Politecnico Bovisa 参会 + 汇报", "t": "09:00", "lat": 45.5128, "lon": 9.1736, "cat": "大学 / 会议地点", "rating": 4.5, "reviews": "1,203", "desc": "全天参会 | 汇报17:15–18:15 | 建议提前45分钟到场", "sec": "Morning", "next": "地铁 → 约25分钟"}, {"n": "Duomo di Milano 米兰大教堂 (夜景)", "t": "19:00", "lat": 45.4641, "lon": 9.1919, "cat": "大教堂", "rating": 4.8, "reviews": "199,284", "desc": "汇报后夜游，只看外观和夜景，不登顶", "sec": "Evening", "next": "步行 → 3分钟"}, {"n": "La Scala 斯卡拉歌剧院 (外观)", "t": "19:30", "lat": 45.4675, "lon": 9.1896, "cat": "歌剧院", "rating": 4.7, "reviews": "42,193", "desc": "世界著名歌剧院，外观欣赏", "sec": "Evening", "next": ""}]}, {"date": "7/8", "dow": "周三", "emoji": "🚢", "color": "#00AADD", "title": "威尼斯一日游", "desc": "06:30出发 | Vaporetto Line 1大运河入城 | 圣马可+总督宫+里亚托桥 | 约21:00返米兰", "center": [45.436, 12.336], "zoom": 14, "stops": [{"n": "Venezia Santa Lucia 抵达", "t": "10:00", "lat": 45.4414, "lon": 12.3218, "cat": "火车站", "rating": 4.3, "reviews": "24,881", "desc": "高铁约2.5小时 | 乘Vaporetto Line 1沿大运河入城", "sec": "Morning", "next": "Vaporetto Line 1 → 约40分钟"}, {"n": "Piazza San Marco 圣马可广场", "t": "10:45", "lat": 45.4343, "lon": 12.3388, "cat": "广场", "rating": 4.7, "reviews": "143,221", "desc": "拜占庭风格马赛克 | 威尼斯海洋共和国中心", "sec": "Morning", "next": "步行 → 2分钟"}, {"n": "Palazzo Ducale 总督宫", "t": "13:15", "lat": 45.4337, "lon": 12.3402, "cat": "历史宫殿", "rating": 4.7, "reviews": "52,831", "desc": "威尼斯最宏伟的哥特式宫殿 | 海洋共和国权力中心", "sec": "Afternoon", "next": "步行 → 2分钟"}, {"n": "Ponte dei Sospiri 叹息桥", "t": "15:00", "lat": 45.4337, "lon": 12.3413, "cat": "历史桥梁", "rating": 4.7, "reviews": "67,934", "desc": "经典拍照打卡点", "sec": "Afternoon", "next": "步行 → 20分钟"}, {"n": "Ponte di Rialto 里亚托桥", "t": "15:30", "lat": 45.438, "lon": 12.3358, "cat": "历史桥梁", "rating": 4.7, "reviews": "89,122", "desc": "大运河上的标志性白色石桥", "sec": "Afternoon", "next": "步行 → 25分钟"}, {"n": "Ponte degli Scalzi 赤足桥", "t": "17:00", "lat": 45.4424, "lon": 12.3215, "cat": "历史桥梁", "rating": 4.5, "reviews": "12,034", "desc": "靠近圣卢西亚站，返程前打卡", "sec": "Afternoon", "next": "步行 → 5分钟"}, {"n": "Venezia Santa Lucia 返程", "t": "19:00", "lat": 45.4414, "lon": 12.3218, "cat": "火车站", "rating": 4.3, "reviews": "24,881", "desc": "高铁返回米兰，约21:00抵达", "sec": "Evening", "next": ""}]}, {"date": "7/9", "dow": "周四", "emoji": "🔬", "color": "#3B4BDB", "title": "会议 + 达芬奇博物馆", "desc": "白天参会 | 傍晚达芬奇国家科技博物馆 (会议组织) | 晚宴", "center": [45.486, 9.175], "zoom": 13, "stops": [{"n": "Politecnico Bovisa 参会", "t": "09:00", "lat": 45.5128, "lon": 9.1736, "cat": "大学 / 会议地点", "rating": 4.5, "reviews": "1,203", "desc": "全天参会", "sec": "Morning", "next": "地铁 → 约20分钟"}, {"n": "Museo Nazionale Scienza e Tecnologia 达芬奇博物馆", "t": "17:00", "lat": 45.4596, "lon": 9.1753, "cat": "博物馆", "rating": 4.5, "reviews": "16,829", "desc": "会议组织参观 | 达芬奇展廊 | 机械与工程展区 | 晚宴", "sec": "Evening", "next": ""}]}, {"date": "7/10", "dow": "周五", "emoji": "🏰", "color": "#3B4BDB", "title": "米兰自由日", "desc": "Duomo登顶(9:30预约) → Galleria → 斯福尔扎城堡 → 布雷拉 → Navigli晚餐", "center": [45.464, 9.181], "zoom": 14, "stops": [{"n": "Duomo di Milano 米兰大教堂", "t": "09:30", "lat": 45.4641, "lon": 9.1919, "cat": "大教堂", "rating": 4.8, "reviews": "199,284", "desc": "预约9:30 | Duomo Pass + Rooftop by Lift | 彩色玻璃窗 + 屋顶露台全景", "sec": "Morning", "next": "步行 → 2分钟"}, {"n": "Galleria Vittorio Emanuele II", "t": "11:30", "lat": 45.4654, "lon": 9.1908, "cat": "购物 / 历史建筑", "rating": 4.7, "reviews": "97,382", "desc": "米兰最著名购物拱廊 | 19世纪铁艺玻璃穹顶", "sec": "Morning", "next": "步行 → 15分钟"}, {"n": "Castello Sforzesco 斯福尔扎城堡", "t": "14:00", "lat": 45.4702, "lon": 9.1789, "cat": "城堡", "rating": 4.6, "reviews": "90,352", "desc": "参观庭院和外观 | 斯福尔扎家族统治米兰的宫殿", "sec": "Afternoon", "next": "步行 → 10分钟"}, {"n": "Brera 布雷拉艺术区", "t": "15:30", "lat": 45.4729, "lon": 9.1869, "cat": "艺术街区", "rating": 4.6, "reviews": "24,821", "desc": "米兰最有艺术气息的街区 | 画廊、咖啡馆、精品店", "sec": "Afternoon", "next": "步行/地铁 → 约20分钟"}, {"n": "Navigli 运河区晚餐", "t": "18:30", "lat": 45.4531, "lon": 9.1729, "cat": "餐厅 / 夜生活", "rating": 4.4, "reviews": "18,234", "desc": "米兰运河夜生活区 | 露天餐厅氛围极佳", "sec": "Evening", "next": ""}]}, {"date": "7/11", "dow": "周六", "emoji": "🏛️", "color": "#DD2222", "title": "米兰 → 罗马", "desc": "09:00高铁(约3小时) → 12:30抵达罗马 | 下午许愿池+西班牙阶梯+卡比托利欧广场", "center": [41.905, 12.481], "zoom": 13, "stops": [{"n": "Roma Termini 抵达", "t": "12:30", "lat": 41.9003, "lon": 12.5024, "cat": "火车站", "rating": 4.1, "reviews": "28,341", "desc": "高铁约3小时 | 乘Metro B到Piramide，或打车", "sec": "Afternoon", "next": "地铁/打车 → 约15分钟"}, {"n": "Hotel Pyramid", "t": "13:00", "lat": 41.8765, "lon": 12.481, "cat": "酒店 | 7/11–7/14住宿", "rating": 4.2, "reviews": "3,921", "desc": "靠近Piramide/Ostiense区，出行方便", "sec": "Afternoon", "next": "步行/地铁 → 约30分钟"}, {"n": "Trevi Fountain 许愿池", "t": "15:00", "lat": 41.9009, "lon": 12.4833, "cat": "喷泉 / 历史景点", "rating": 4.7, "reviews": "189,321", "desc": "巴洛克喷泉杰作 (1762年) | 投币许愿！", "sec": "Afternoon", "next": "步行 → 12分钟"}, {"n": "Spanish Steps 西班牙阶梯", "t": "16:00", "lat": 41.9059, "lon": 12.4826, "cat": "历史景点", "rating": 4.7, "reviews": "142,834", "desc": "135级台阶 | 顶部俯瞰罗马城市全景", "sec": "Afternoon", "next": "步行 → 20分钟"}, {"n": "Campidoglio 卡比托利欧广场", "t": "17:00", "lat": 41.8932, "lon": 12.4822, "cat": "广场", "rating": 4.7, "reviews": "34,291", "desc": "米开朗基罗设计 | 俯瞰古罗马广场 | 罗马帝国主题导入", "sec": "Evening", "next": ""}]}, {"date": "7/12", "dow": "周日", "emoji": "🏟️", "color": "#DD2222", "title": "罗马帝国主线", "desc": "万神殿(9:00) → 真理之口 → 斗兽场+古罗马广场+帕拉蒂尼山(13:30) → 帝国大道晚餐", "center": [41.895, 12.485], "zoom": 14, "stops": [{"n": "Pantheon 万神殿", "t": "09:00", "lat": 41.8986, "lon": 12.4769, "cat": "古罗马建筑", "rating": 4.7, "reviews": "108,923", "desc": "预约9:00 | 2000年前穹顶 | 拉斐尔长眠于此", "sec": "Morning", "next": "步行 → 15分钟"}, {"n": "Bocca della Verità 真理之口", "t": "10:30", "lat": 41.8882, "lon": 12.4814, "cat": "历史景点", "rating": 4.6, "reviews": "52,814", "desc": "免费 | 9:30–17:50 | Santa Maria in Cosmedin教堂", "sec": "Morning", "next": "步行 → 25分钟"}, {"n": "Colosseum 斗兽场", "t": "13:30", "lat": 41.8902, "lon": 12.4922, "cat": "古罗马建筑", "rating": 4.8, "reviews": "203,291", "desc": "预约13:30 | 72–80 AD | 可容纳5万观众 | ⚠️勿携带大包", "sec": "Afternoon", "next": "步行 → 3分钟"}, {"n": "Arch of Constantine 君士坦丁凯旋门", "t": "15:00", "lat": 41.8897, "lon": 12.4906, "cat": "历史建筑", "rating": 4.7, "reviews": "67,234", "desc": "315 AD | 罗马最大凯旋门", "sec": "Afternoon", "next": "步行 → 10分钟"}, {"n": "Palatine Hill 帕拉蒂尼山", "t": "15:30", "lat": 41.8889, "lon": 12.4877, "cat": "考古遗址", "rating": 4.6, "reviews": "48,291", "desc": "同套票 | 皇宫遗址 | 俯瞰古罗马广场最佳位置", "sec": "Afternoon", "next": "步行 → 10分钟"}, {"n": "Roman Forum 古罗马广场", "t": "16:30", "lat": 41.8925, "lon": 12.4853, "cat": "考古遗址", "rating": 4.7, "reviews": "89,342", "desc": "同套票 | 罗马共和国与帝国政治中心", "sec": "Afternoon", "next": "步行 → 8分钟"}, {"n": "Via dei Fori Imperiali 帝国广场大道", "t": "18:00", "lat": 41.8942, "lon": 12.4892, "cat": "历史大道", "rating": 4.6, "reviews": "21,834", "desc": "晚餐+夜游帝国大道", "sec": "Evening", "next": ""}]}, {"date": "7/13", "dow": "周一", "emoji": "🕌", "color": "#9922CC", "title": "梵蒂冈 天主教主线", "desc": "梵蒂冈博物馆+西斯廷(09:00) → 圣彼得大教堂(15:00) → 圣天使堡+圣天使桥日落", "center": [41.905, 12.459], "zoom": 14, "stops": [{"n": "Vatican Museums 梵蒂冈博物馆", "t": "09:00", "lat": 41.9066, "lon": 12.4536, "cat": "博物馆", "rating": 4.7, "reviews": "87,643", "desc": "预约9:00 | 07:50出发 | 拉斐尔房间+地图廊+西斯廷礼拜堂", "sec": "Morning", "next": "步行 → 5分钟 (馆内)"}, {"n": "Sistine Chapel 西斯廷礼拜堂", "t": "11:00", "lat": 41.9054, "lon": 12.4545, "cat": "礼拜堂", "rating": 4.8, "reviews": "54,923", "desc": "米开朗基罗《创世纪》《最后的审判》| ⚠️禁止拍照", "sec": "Morning", "next": "步行 → 10分钟"}, {"n": "St. Peter's Square 圣彼得广场", "t": "14:00", "lat": 41.9022, "lon": 12.4564, "cat": "广场", "rating": 4.8, "reviews": "132,841", "desc": "贝尔尼尼设计 | 可容纳30万人的天主教圣地", "sec": "Afternoon", "next": "步行 → 2分钟"}, {"n": "St. Peter's Basilica 圣彼得大教堂", "t": "15:00", "lat": 41.9023, "lon": 12.4538, "cat": "大教堂", "rating": 4.8, "reviews": "142,381", "desc": "预约15:00 | 免费 | 米开朗基罗《圣殇》| 贝尔尼尼华盖", "sec": "Afternoon", "next": "步行 → 15分钟"}, {"n": "Castel Sant'Angelo 圣天使堡 (外观)", "t": "17:30", "lat": 41.9031, "lon": 12.4663, "cat": "历史建筑", "rating": 4.6, "reviews": "53,291", "desc": "外观欣赏 | 哈德良陵墓改建的中世纪要塞", "sec": "Evening", "next": "步行 → 3分钟"}, {"n": "Ponte Sant'Angelo 圣天使桥 日落", "t": "18:30", "lat": 41.902, "lon": 12.4643, "cat": "历史桥梁", "rating": 4.7, "reviews": "43,821", "desc": "台伯河日落美景 | 贝尔尼尼天使雕像", "sec": "Evening", "next": ""}]}, {"date": "7/14", "dow": "周二", "emoji": "⛪", "color": "#DD2222", "title": "最后景点 → 返回米兰", "desc": "圣保罗城外大殿(09:00,免费) → 退房 → 15:00高铁返回米兰 → 约18:30抵达", "center": [41.875, 12.48], "zoom": 11, "stops": [{"n": "San Paolo fuori le Mura 圣保罗城外大殿", "t": "09:00", "lat": 41.8588, "lon": 12.4757, "cat": "宗座圣殿", "rating": 4.7, "reviews": "22,341", "desc": "免费 | 07:00–18:30 | 四大宗座圣殿之一 | 游客少，安静收尾", "sec": "Morning", "next": "步行/地铁 → 约20分钟"}, {"n": "Hotel Pyramid 退房", "t": "10:30", "lat": 41.8765, "lon": 12.481, "cat": "酒店", "rating": 4.2, "reviews": "3,921", "desc": "退房取行李，附近午餐", "sec": "Morning", "next": "地铁 → 约15分钟"}, {"n": "Roma Termini 出发", "t": "15:00", "lat": 41.9003, "lon": 12.5024, "cat": "火车站", "rating": 4.1, "reviews": "28,341", "desc": "Frecciarossa高铁返回米兰", "sec": "Afternoon", "next": "Frecciarossa → 约3小时"}, {"n": "Milano Centrale 抵达", "t": "18:30", "lat": 45.4862, "lon": 9.2045, "cat": "火车站", "rating": 4.3, "reviews": "38,291", "desc": "抵达米兰，步行至43 Station Hotel", "sec": "Evening", "next": "步行 → 5分钟"}, {"n": "43 Station Hotel", "t": "19:00", "lat": 45.4865, "lon": 9.2043, "cat": "酒店 | 7/14–7/15住宿", "rating": 4.1, "reviews": "2,184", "desc": "整理行李、退税材料、护照、机票", "sec": "Evening", "next": ""}]}, {"date": "7/15", "dow": "周三", "emoji": "✈️", "color": "#3B4BDB", "title": "返程日", "desc": "09:30 Malpensa Express (51分钟) | 约13:30起飞 | 中转北京 → 深圳", "center": [45.55, 9.05], "zoom": 9, "stops": [{"n": "43 Station Hotel 出发", "t": "09:00", "lat": 45.4865, "lon": 9.2043, "cat": "酒店", "rating": 4.1, "reviews": "2,184", "desc": "步行或打车至Milano Centrale", "sec": "Morning", "next": "步行 → 5分钟"}, {"n": "Milano Centrale → Malpensa Express", "t": "09:30", "lat": 45.4862, "lon": 9.2045, "cat": "火车站", "rating": 4.3, "reviews": "38,291", "desc": "Malpensa Express出发，约51分钟", "sec": "Morning", "next": "Malpensa Express → 51分钟"}, {"n": "Milan Malpensa Airport T1 出发", "t": "10:30+", "lat": 45.6306, "lon": 8.7231, "cat": "机场", "rating": 4.5, "reviews": "12,483", "desc": "约13:30起飞 | 提前2.5–3小时到机场 | 办理退税、值机、安检", "sec": "Morning", "next": ""}]}];
+
+/* ── MAP ── */
+const map = L.map('map',{zoomControl:true});
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>',maxZoom:19
+}).addTo(map);
+
+let layers=[], markers=[], curDay=0;
+
+/* ── TABS ── */
+const tabsEl=document.getElementById('tabs');
+DAYS.forEach((d,i)=>{
+  const t=document.createElement('div');
+  t.className='tab';
+  t.innerHTML=`${d.emoji} ${d.date}`;
+  t.onclick=()=>selectDay(i);
+  tabsEl.appendChild(t);
+});
+
+/* ── SELECT DAY ── */
+function selectDay(i){
+  curDay=i; const day=DAYS[i];
+  // tabs
+  document.querySelectorAll('.tab').forEach((t,j)=>{
+    t.className='tab'+(j===i?' active':'');
+    t.style.cssText=j===i?`background:${DAYS[j].color};border-color:${DAYS[j].color};color:#fff`:'';
+  });
+  // clear map
+  layers.forEach(l=>map.removeLayer(l)); layers=[]; markers=[];
+  // route line
+  const coords=day.stops.map(s=>[s.lat,s.lon]);
+  if(coords.length>1){
+    const ln=L.polyline(coords,{color:day.color,weight:4,opacity:.85}).addTo(map);
+    layers.push(ln);
+  }
+  // markers
+  day.stops.forEach((s,idx)=>{
+    const icon=L.divIcon({
+      html:`<div style="width:28px;height:28px;border-radius:50%;background:${day.color};
+        border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3);
+        display:flex;align-items:center;justify-content:center;
+        font-size:11px;font-weight:800;color:#fff;">${idx+1}</div>`,
+      className:'',iconSize:[28,28],iconAnchor:[14,14],popupAnchor:[0,-14]
+    });
+    const mk=L.marker([s.lat,s.lon],{icon}).addTo(map)
+      .bindPopup(`<div class="pt">${s.t}</div><div class="pn">${s.n}</div><div class="pd">${s.desc}</div>`,
+        {maxWidth:230});
+    mk.on('click',()=>hlStop(idx));
+    layers.push(mk); markers.push(mk);
+  });
+  // fit bounds
+  if(coords.length===1) map.setView(coords[0],day.zoom||14);
+  else if(coords.length>1) map.fitBounds(L.latLngBounds(coords).pad(.18));
+  // sidebar
+  renderSB(day,i);
+}
+
+/* ── SIDEBAR ── */
+function renderSB(day,di){
+  const stops=day.stops;
+  // Google Maps URL
+  let gurl='';
+  if(stops.length>=2){
+    const o=`${stops[0].lat},${stops[0].lon}`;
+    const d=`${stops[stops.length-1].lat},${stops[stops.length-1].lon}`;
+    const wp=stops.slice(1,-1).slice(0,8).map(s=>`${s.lat},${s.lon}`).join('|');
+    gurl=`https://www.google.com/maps/dir/?api=1&origin=${o}&destination=${d}${wp?'&waypoints='+wp:''}`;
+  }
+  // group by section
+  const secs={};
+  stops.forEach((s,i)=>{
+    const k=s.sec||'All Day';
+    if(!secs[k])secs[k]=[];
+    secs[k].push({...s,idx:i});
+  });
+  const order=['Morning','Afternoon','Evening','All Day'];
+  const labels={Morning:'🌅 上午',Afternoon:'☀️ 下午',Evening:'🌙 晚上','All Day':'📍 全天'};
+
+  let html=`<div class="dh">
+    <div class="dlabel">DAY ${di+1} &nbsp;·&nbsp; ${day.date} ${day.dow}</div>
+    <div class="dtitle">${day.emoji} ${day.title}</div>
+    <div class="ddesc">${day.desc}</div>
+    ${gurl?`<a class="rbtn" href="${gurl}" target="_blank">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      在 Google Maps 中打开路线
+    </a>`:``}
+  </div>`;
+
+  order.forEach(sec=>{
+    if(!secs[sec])return;
+    html+=`<div class="slabel">${labels[sec]||sec}</div>`;
+    secs[sec].forEach(s=>{
+      const stars='★'.repeat(Math.round(s.rating))+'☆'.repeat(5-Math.round(s.rating));
+      html+=`<div class="sc" id="sc${s.idx}" onclick="hlStop(${s.idx})">
+        <div class="sthumb" style="background:${day.color}">${s.idx+1}</div>
+        <div class="sright">
+          <div class="stime">${s.t}</div>
+          <div class="sname" title="${s.n}">${s.n}</div>
+          <div class="smeta"><span class="sstar">${s.rating}</span> ★ (${s.reviews}) · ${s.cat}</div>
+          <div class="sdesc">${s.desc}</div>
+          ${s.next?`<div class="snext">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="#1a73e8"><path d="M8 5v14l11-7z"/></svg>
+            ${s.next}
+          </div>`:''}
+        </div>
+      </div>`;
+    });
+  });
+
+  document.getElementById('sb').innerHTML=html;
+}
+
+/* ── HIGHLIGHT STOP ── */
+function hlStop(idx){
+  document.querySelectorAll('.sc').forEach(c=>c.classList.remove('hl'));
+  const card=document.getElementById('sc'+idx);
+  if(card){card.classList.add('hl');card.scrollIntoView({behavior:'smooth',block:'nearest'});}
+  if(markers[idx]){
+    const s=DAYS[curDay].stops[idx];
+    map.panTo([s.lat,s.lon]);
+    markers[idx].openPopup();
+  }
+}
+
+/* ── KEYBOARD NAV ── */
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'&&curDay<DAYS.length-1)selectDay(curDay+1);
+  if(e.key==='ArrowLeft'&&curDay>0)selectDay(curDay-1);
+});
+
+selectDay(0);
+</script>
+</body>
+</html>
