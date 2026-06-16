@@ -3,6 +3,7 @@
 **旅行时间：2026 年 7 月 3 日 – 7 月 15 日**  
 **路线：深圳 → 北京 → 米兰 → 佛罗伦萨 → 米兰/威尼斯 → 罗马/梵蒂冈 → 米兰 → 北京 → 深圳**  
 **主题重点：**
+
 - **佛罗伦萨：文艺复兴路线**，重点体验美第奇、米开朗基罗、波提切利、达·芬奇、拉斐尔等艺术脉络。
 - **罗马：罗马帝国 + 天主教路线**，重点体验斗兽场、古罗马广场、梵蒂冈、圣彼得大教堂等。
 - **米兰：会议 + 大教堂/达·芬奇/现代城市体验**。
@@ -12,13 +13,13 @@
 
 ## 1. 住宿与交通基准
 
-| 日期 | 城市 | 酒店 | 安排说明 |
-|---|---|---|---|
-| 7/3–7/4 | 米兰 | 43 号车站酒店 / 43 Station Hotel | 靠近 Milano Centrale，适合抵达后入住和第二天坐火车去佛罗伦萨。 |
-| 7/4–7/6 | 佛罗伦萨 | Guest House La Grancontessa | 靠近 Firenze Santa Maria Novella 火车站，适合步行到老城核心区。 |
-| 7/6–7/11 | 米兰 | Starhotels Tourist | 会议期间住宿，靠近 Bignami 地铁站；去市中心需乘地铁。 |
-| 7/11–7/14 | 罗马 | Hotel Pyramid | 靠近 Piramide / Ostiense 区域，去斗兽场、梵蒂冈、Termini 均较方便。 |
-| 7/14–7/15 | 米兰 | 43 号车站酒店 / 43 Station Hotel | 适合第二天从 Milano Centrale 前往 Malpensa 机场。 |
+| 日期      | 城市     | 酒店                             | 安排说明                                                     |
+| --------- | -------- | -------------------------------- | ------------------------------------------------------------ |
+| 7/3–7/4   | 米兰     | 43 号车站酒店 / 43 Station Hotel | 靠近 Milano Centrale，适合抵达后入住和第二天坐火车去佛罗伦萨。 |
+| 7/4–7/6   | 佛罗伦萨 | Guest House La Grancontessa      | 靠近 Firenze Santa Maria Novella 火车站，适合步行到老城核心区。 |
+| 7/6–7/11  | 米兰     | Starhotels Tourist               | 会议期间住宿，靠近 Bignami 地铁站；去市中心需乘地铁。        |
+| 7/11–7/14 | 罗马     | Hotel Pyramid                    | 靠近 Piramide / Ostiense 区域，去斗兽场、梵蒂冈、Termini 均较方便。 |
+| 7/14–7/15 | 米兰     | 43 号车站酒店 / 43 Station Hotel | 适合第二天从 Milano Centrale 前往 Malpensa 机场。            |
 
 ---
 
@@ -112,10 +113,6 @@
 ## 上午：Uffizi Gallery 乌菲兹美术馆
 
 ### 08:15 (开门) –11:30 乌菲兹美术馆
-
-。
-
-重点作品与主题：
 
 每个月第一个周日为免费日建议 **07:30 前到开始排队**，重点作品与主题：
 
@@ -540,27 +537,27 @@ Borgo Pio 一带离圣彼得广场近，适合午餐与短暂休息。
 
 ## 3. 订票与预约优先级
 
-| 优先级 | 项目 | 建议 |
-|---|---|---|
-| 1 | 梵蒂冈博物馆 | 预约 7/13 09:00，确认二维码和姓名。 |
-| 2 | 斗兽场 + 古罗马广场 + 帕拉蒂尼山 | 预约 7/12 下午 13:30 官方票。 |
-| 3 | Uffizi Gallery | 预约 7/5 上午 08:30 或 09:00。 |
-| 4 | Accademia Gallery | 预约 7/5 下午 14:30 或 15:00。 |
-| 5 | 威尼斯 Access Fee | 7/8 作为一日游客，提前确认是否需缴费并获取 QR code。 |
-| 6 | 米兰大教堂屋顶 | 7/10 建议预约电梯登顶票。 |
-| 7 | 圣马可大教堂 / 总督宫 | 7/8 威尼斯一日游建议提前预约，减少排队。 |
-| 8 | 《最后的晚餐》 | 如想参观需提前抢票；临时余票较难，不作为核心安排。 |
+| 优先级 | 项目                             | 建议                                                 |
+| ------ | -------------------------------- | ---------------------------------------------------- |
+| 1      | 梵蒂冈博物馆                     | 预约 7/13 09:00，确认二维码和姓名。                  |
+| 2      | 斗兽场 + 古罗马广场 + 帕拉蒂尼山 | 预约 7/12 下午 13:30 官方票。                        |
+| 3      | Uffizi Gallery                   | 预约 7/5 上午 08:30 或 09:00。                       |
+| 4      | Accademia Gallery                | 预约 7/5 下午 14:30 或 15:00。                       |
+| 5      | 威尼斯 Access Fee                | 7/8 作为一日游客，提前确认是否需缴费并获取 QR code。 |
+| 6      | 米兰大教堂屋顶                   | 7/10 建议预约电梯登顶票。                            |
+| 7      | 圣马可大教堂 / 总督宫            | 7/8 威尼斯一日游建议提前预约，减少排队。             |
+| 8      | 《最后的晚餐》                   | 如想参观需提前抢票；临时余票较难，不作为核心安排。   |
 
 ---
 
 ## 4. 城市主题与核心景点总结
 
-| 城市 | 核心主题 | 必看景点 | 可选景点 |
-|---|---|---|---|
-| 佛罗伦萨 | 文艺复兴、美第奇、米开朗基罗 | Uffizi、Accademia、Duomo 外观、Piazza della Signoria、Ponte Vecchio、Piazzale Michelangelo | Medici Chapels、Santa Croce、登穹顶 |
-| 米兰 | 会议、大教堂、达·芬奇、现代城市 | Duomo + Rooftop、Galleria、Sforza Castle、Brera、Leonardo Museum | Last Supper、La Scala Museum、Navigli |
-| 威尼斯 | 海洋共和国、拜占庭风格、大运河 | San Marco、Doge’s Palace、Rialto Bridge、Grand Canal | 贡多拉、学院美术馆、Peggy Guggenheim；不建议一日游加外岛 |
-| 罗马 | 罗马帝国、古典遗产、天主教中心 | Colosseum、Roman Forum、Palatine、Pantheon、Vatican Museums、Sistine Chapel、St. Peter’s Basilica | Castel Sant’Angelo、San Paolo fuori le Mura、Capitoline Museums |
+| 城市     | 核心主题                        | 必看景点                                                     | 可选景点                                                     |
+| -------- | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 佛罗伦萨 | 文艺复兴、美第奇、米开朗基罗    | Uffizi、Accademia、Duomo 外观、Piazza della Signoria、Ponte Vecchio、Piazzale Michelangelo | Medici Chapels、Santa Croce、登穹顶                          |
+| 米兰     | 会议、大教堂、达·芬奇、现代城市 | Duomo + Rooftop、Galleria、Sforza Castle、Brera、Leonardo Museum | Last Supper、La Scala Museum、Navigli                        |
+| 威尼斯   | 海洋共和国、拜占庭风格、大运河  | San Marco、Doge’s Palace、Rialto Bridge、Grand Canal         | 贡多拉、学院美术馆、Peggy Guggenheim；不建议一日游加外岛     |
+| 罗马     | 罗马帝国、古典遗产、天主教中心  | Colosseum、Roman Forum、Palatine、Pantheon、Vatican Museums、Sistine Chapel、St. Peter’s Basilica | Castel Sant’Angelo、San Paolo fuori le Mura、Capitoline Museums |
 
 ---
 
@@ -658,17 +655,27 @@ Borgo Pio 一带离圣彼得广场近，适合午餐与短暂休息。
 已经预定：
 
 - 梵蒂冈博物馆 Musei Vaticani  **9:00**
-2. 圣母百花大教堂 Santa Maria del Fiore **14:15 - 15:00**
-3. 乌菲兹美术馆 Uffizi Gallery （免费日）
-4. 学院美术馆 Accademia Gallery （免费日）
-5. 美第奇礼拜堂 Medici Chapels （免费日） 
-6. Venice 主岛 Access Fee （免费日）
-7. 米兰大教堂 Duomo di Milano  **9:30**
-8. 许愿池 Trevi Fountain  **没有固定时间**
-9. 斗兽场、古罗马广场、帕拉蒂尼山 Colosseum + Roman Forum + Palatine Hill  **13:30**
-10. 圣彼得大教堂 St. Peter’s Basilica  **15:00**
+- 圣母百花大教堂 Santa Maria del Fiore **14:15 - 15:00**
+- 乌菲兹美术馆 Uffizi Gallery （免费日）
+- 学院美术馆 Accademia Gallery （免费日）
+- 美第奇礼拜堂 Medici Chapels （免费日） 
+- Venice 主岛 Access Fee （免费日）
+- 米兰大教堂 Duomo di Milano  **9:30**
+- 许愿池 Trevi Fountain  **没有固定时间**
+- 斗兽场、古罗马广场、帕拉蒂尼山 Colosseum + Roman Forum + Palatine Hill  **13:30**
+- 圣彼得大教堂 St. Peter’s Basilica  **15:00**
 
 还未预定：
 
 - 旧宫博物馆 Museo di Palazzo Vecchio: [ticketsmuseums.comune.fi.it]()  **15:00–17:00**
 - 万神殿 Pantheon：https://portale.museiitaliani.it/b2c/  **9:00–10:00**
+
+---
+
+## 10. Phone Implement
+
+网页
+
+- 总网页：https://cc0429.github.io/Itay-2026/
+- 互动地图：https://cc0429.github.io/Itay-2026/Italy_Travel_2026_iPhone_WebApp/
+- 谷歌地图：https://cc0429.github.io/Itay-2026/GoogleMap/
