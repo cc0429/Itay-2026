@@ -114,6 +114,10 @@
 
 ### 08:15 (开门) –11:30 乌菲兹美术馆
 
+。
+
+重点作品与主题：
+
 每个月第一个周日为免费日建议 **07:30 前到开始排队**，重点作品与主题：
 
 - Botticelli《春》《维纳斯的诞生》
@@ -655,15 +659,16 @@ Borgo Pio 一带离圣彼得广场近，适合午餐与短暂休息。
 已经预定：
 
 - 梵蒂冈博物馆 Musei Vaticani  **9:00**
-- 圣母百花大教堂 Santa Maria del Fiore **14:15 - 15:00**
-- 乌菲兹美术馆 Uffizi Gallery （免费日）
-- 学院美术馆 Accademia Gallery （免费日）
-- 美第奇礼拜堂 Medici Chapels （免费日） 
-- Venice 主岛 Access Fee （免费日）
-- 米兰大教堂 Duomo di Milano  **9:30**
-- 许愿池 Trevi Fountain  **没有固定时间**
-- 斗兽场、古罗马广场、帕拉蒂尼山 Colosseum + Roman Forum + Palatine Hill  **13:30**
-- 圣彼得大教堂 St. Peter’s Basilica  **15:00**
+
+2. 圣母百花大教堂 Santa Maria del Fiore **14:15 - 15:00**
+3. 乌菲兹美术馆 Uffizi Gallery （免费日）
+4. 学院美术馆 Accademia Gallery （免费日）
+5. 美第奇礼拜堂 Medici Chapels （免费日） 
+6. Venice 主岛 Access Fee （免费日）
+7. 米兰大教堂 Duomo di Milano  **9:30**
+8. 许愿池 Trevi Fountain  **没有固定时间**
+9. 斗兽场、古罗马广场、帕拉蒂尼山 Colosseum + Roman Forum + Palatine Hill  **13:30**
+10. 圣彼得大教堂 St. Peter’s Basilica  **15:00**
 
 还未预定：
 
@@ -678,4 +683,4 @@ Borgo Pio 一带离圣彼得广场近，适合午餐与短暂休息。
 
 - 总网页：https://cc0429.github.io/Itay-2026/
 - 互动地图：https://cc0429.github.io/Itay-2026/Italy_Travel_2026_iPhone_WebApp/
-- 谷歌地图：https://cc0429.github.io/Itay-2026/GoogleMap/
+- 谷歌地图导航：https://claude.ai/share/632711b6-5b3a-40f2-a3e2-797139ddf385
