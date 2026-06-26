@@ -658,7 +658,7 @@ Borgo Pio 一带离圣彼得广场近，适合午餐与短暂休息。
 
 已经预定：
 
-- 梵蒂冈博物馆 Musei Vaticani  **9:00**
+1. 梵蒂冈博物馆 Musei Vaticani  **9:00**
 
 2. 圣母百花大教堂 Santa Maria del Fiore **14:15 - 15:00**
 3. 乌菲兹美术馆 Uffizi Gallery （免费日）
@@ -670,10 +670,9 @@ Borgo Pio 一带离圣彼得广场近，适合午餐与短暂休息。
 9. 斗兽场、古罗马广场、帕拉蒂尼山 Colosseum + Roman Forum + Palatine Hill  **13:30**
 10. 圣彼得大教堂 St. Peter’s Basilica  **15:00**
 
-还未预定：
+11. 旧宫博物馆 Museo di Palazzo Vecchio: [ticketsmuseums.comune.fi.it]()  **16:15–16:30**
 
-- 旧宫博物馆 Museo di Palazzo Vecchio: [ticketsmuseums.comune.fi.it]()  **15:00–17:00**
-- 万神殿 Pantheon：https://portale.museiitaliani.it/b2c/  **9:00–10:00**
+12. 万神殿 Pantheon：https://portale.museiitaliani.it/b2c/  **9:00–10:00**
 
 ---
 
